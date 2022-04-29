@@ -173,6 +173,28 @@ public class Solution {
         }
     }
 
+    class ReverseIterator<T> implements CustomIterator<T>{
+        private final List<T> iterable;
+        private Integer currentIndex;
+
+        public ReverseIterator(List<T> iterable) {
+            this.iterable = iterable;
+            this.currentIndex = iterable.size()-1;
+        }
+
+        @Override
+        public T next() {
+            T element  = iterable.get(currentIndex);
+            currentIndex--;
+            return element;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return currentIndex > -1;
+        }
+    }
+
     public static void main(String[] args) {
 
         Solution solve = new Solution();
@@ -244,6 +266,14 @@ public class Solution {
             System.out.println(ij.next());
         }
 
+        List<String> myListRev = new ArrayList<String>(of("A","B","C"));
+        CustomIterator<String> iterable6 = new ReverseIterator<>(myListRev);
+
+        System.out.println("--------------");
+
+        while (iterable6.hasNext()){
+            System.out.println(iterable6.next());
+        }
 
     }
 }
